@@ -16,16 +16,14 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        3.3.5
+Version:        3.3.7
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
 Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch0:         %{name}-cstdint.patch
-Patch1:         %{name}-docs.patch
-Patch2:         %{name}-soversion.patch
+Patch1:         %{name}-soversion.patch
 
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
@@ -133,7 +131,7 @@ mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
 rm -fr %{buildroot}%{_prefix}/lib
 
 # Let RPM pick up docs in the files section
-rm -fr %{buildroot}%{_docdir}
+rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
 
 %if %{with tests}
 %check
@@ -150,13 +148,18 @@ python3 src/func_tests/run_tests.py
 
 %files devel
 %{_includedir}/LCEVC
+%{_includedir}/lcevc_config.h
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_core.so
 %{_libdir}/pkgconfig/lcevc_dec.pc
 
 %files static
+%{_libdir}/liblcevc_dec_api_static.a
 %{_libdir}/liblcevc_dec_api_utility.a
 %{_libdir}/liblcevc_dec_core_sequencing.a
+%{_libdir}/liblcevc_dec_core_static.a
+%{_libdir}/liblcevc_dec_enhancement_cpu.a
+%{_libdir}/liblcevc_dec_overlay_images.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
 
@@ -169,5 +172,8 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_core_sequencing_test_unit
 
 %changelog
+* Wed May 07 2025 Simone Caronni <negativo17@gmail.com> - 3.3.7-1
+- Update to 3.3.7.
+
 * Sat Mar 22 2025 Simone Caronni <negativo17@gmail.com> - 3.3.5-1
 - First build.
