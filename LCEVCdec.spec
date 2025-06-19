@@ -1,7 +1,7 @@
 # This information is required if not building from a GIT checkout.
 # See cmake/modules/VNovaSetup.cmake:
-%global gitlonghash bf7e0d91c969502e90a925942510a1ca8088afec
-%global gitdate 20250320
+%global gitlonghash cf10f6b0ea77b7e0de6772eba54addc40d65bd9b
+%global gitdate 20250613
 %global githash %(c=%{gitlonghash}; echo ${c:0:7})
 %global gitbranch main
 
@@ -16,7 +16,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        3.3.7
+Version:        3.3.8
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
@@ -148,7 +148,6 @@ python3 src/func_tests/run_tests.py
 
 %files devel
 %{_includedir}/LCEVC
-%{_includedir}/lcevc_config.h
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_core.so
 %{_libdir}/pkgconfig/lcevc_dec.pc
@@ -172,6 +171,9 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_core_sequencing_test_unit
 
 %changelog
+* Thu Jun 19 2025 Simone Caronni <negativo17@gmail.com> - 3.3.8-1
+- Update to 3.3.8.
+
 * Wed May 07 2025 Simone Caronni <negativo17@gmail.com> - 3.3.7-1
 - Update to 3.3.7.
 
