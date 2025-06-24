@@ -17,7 +17,7 @@
 
 Name:           LCEVCdec
 Version:        3.3.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
@@ -69,19 +69,14 @@ Features:
 
 %package        devel
 Summary:        Development files for %{name}
+Provides:       %{name}-static = %{version}-%{release}
+Obsoletes:      %{name}-static < %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       plutovg-devel%{?_isa}       
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-%package        static
-Summary:        Static libraries for %{name}
-Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
-
-%description    static
-Static library files for %{name}.
 
 %package        samples
 Summary:        Sample programs for %{name}
@@ -149,18 +144,16 @@ python3 src/func_tests/run_tests.py
 %files devel
 %{_includedir}/LCEVC
 %{_libdir}/liblcevc_dec_api.so
-%{_libdir}/liblcevc_dec_core.so
-%{_libdir}/pkgconfig/lcevc_dec.pc
-
-%files static
 %{_libdir}/liblcevc_dec_api_static.a
 %{_libdir}/liblcevc_dec_api_utility.a
+%{_libdir}/liblcevc_dec_core.so
 %{_libdir}/liblcevc_dec_core_sequencing.a
 %{_libdir}/liblcevc_dec_core_static.a
 %{_libdir}/liblcevc_dec_enhancement_cpu.a
 %{_libdir}/liblcevc_dec_overlay_images.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
+%{_libdir}/pkgconfig/lcevc_dec.pc
 
 %files samples
 %{_bindir}/lcevc_dec_sample
@@ -171,6 +164,10 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_core_sequencing_test_unit
 
 %changelog
+* Tue Jun 24 2025 Simone Caronni <negativo17@gmail.com> - 3.3.8-2
+- Move static libraries into devel, it can't be used without the static
+  libraries.
+
 * Thu Jun 19 2025 Simone Caronni <negativo17@gmail.com> - 3.3.8-1
 - Update to 3.3.8.
 
