@@ -1,7 +1,7 @@
 # This information is required if not building from a GIT checkout.
 # See cmake/modules/VNovaSetup.cmake:
-%global gitlonghash cf10f6b0ea77b7e0de6772eba54addc40d65bd9b
-%global gitdate 20250613
+%global gitlonghash 49183ed6bc6c6cbd53e7de10b83ec2dc9af9226c
+%global gitdate 20250630
 %global githash %(c=%{gitlonghash}; echo ${c:0:7})
 %global gitbranch main
 
@@ -16,8 +16,8 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        3.3.8
-Release:        2%{?dist}
+Version:        4.0.0
+Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
@@ -122,7 +122,7 @@ sed -i \
 %install
 %cmake_install
 
-mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
+#mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
 rm -fr %{buildroot}%{_prefix}/lib
 
 # Let RPM pick up docs in the files section
@@ -136,34 +136,52 @@ python3 src/func_tests/run_tests.py
 %files
 %license LICENSE.md COPYING
 %doc README.md
-%{_libdir}/liblcevc_dec_api.so.3
+%{_libdir}/liblcevc_dec_api.so.4
 %{_libdir}/liblcevc_dec_api.so.%{version}
-%{_libdir}/liblcevc_dec_core.so.3
-%{_libdir}/liblcevc_dec_core.so.%{version}
+%{_libdir}/liblcevc_dec_legacy.so.4
+%{_libdir}/liblcevc_dec_legacy.so.%{version}
+%{_libdir}/liblcevc_dec_pipeline_cpu.so.4
+%{_libdir}/liblcevc_dec_pipeline_cpu.so.%{version}
+%{_libdir}/liblcevc_dec_pipeline_legacy.so.4
+%{_libdir}/liblcevc_dec_pipeline_legacy.so.%{version}
 
 %files devel
 %{_includedir}/LCEVC
 %{_libdir}/liblcevc_dec_api.so
-%{_libdir}/liblcevc_dec_api_static.a
+%{_libdir}/liblcevc_dec_legacy.so
+%{_libdir}/liblcevc_dec_pipeline_cpu.so
+%{_libdir}/liblcevc_dec_pipeline_legacy.so
+# Static:
 %{_libdir}/liblcevc_dec_api_utility.a
-%{_libdir}/liblcevc_dec_core.so
-%{_libdir}/liblcevc_dec_core_sequencing.a
-%{_libdir}/liblcevc_dec_core_static.a
-%{_libdir}/liblcevc_dec_enhancement_cpu.a
-%{_libdir}/liblcevc_dec_overlay_images.a
+%{_libdir}/liblcevc_dec_common.a
+%{_libdir}/liblcevc_dec_enhancement.a
+%{_libdir}/liblcevc_dec_extract.a
+%{_libdir}/liblcevc_dec_pipeline.a
+%{_libdir}/liblcevc_dec_pixel_processing.a
+%{_libdir}/liblcevc_dec_sequencer.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
 %{_libdir}/pkgconfig/lcevc_dec.pc
 
 %files samples
+%{_bindir}/lcevc_dec_common_test_unit
+%{_bindir}/lcevc_dec_enhancement_sample
+%{_bindir}/lcevc_dec_enhancement_test_unit
+%{_bindir}/lcevc_dec_legacy_test_unit
+%{_bindir}/lcevc_dec_pipeline_cpu_test_unit
+%{_bindir}/lcevc_dec_pipeline_legacy_test_unit
+%{_bindir}/lcevc_dec_pipeline_test_unit
+%{_bindir}/lcevc_dec_pixel_processing_test_unit
 %{_bindir}/lcevc_dec_sample
 %{_bindir}/lcevc_dec_test_harness
 %{_bindir}/lcevc_dec_test_unit
 %{_bindir}/lcevc_dec_utility_test_unit
-%{_bindir}/lcevc_core_test_unit
-%{_bindir}/lcevc_core_sequencing_test_unit
+%{_bindir}/lcevc_sequencer_test_unit
 
 %changelog
+* Fri Jul 11 2025 Simone Caronni <negativo17@gmail.com> - 4.0.0-1
+- Update to 4.0.0.
+
 * Tue Jun 24 2025 Simone Caronni <negativo17@gmail.com> - 3.3.8-2
 - Move static libraries into devel, it can't be used without the static
   libraries.
