@@ -16,14 +16,13 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.0.0
+Version:        4.0.1
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
 Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch1:         %{name}-soversion.patch
 
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
@@ -138,12 +137,9 @@ python3 src/func_tests/run_tests.py
 %doc README.md
 %{_libdir}/liblcevc_dec_api.so.4
 %{_libdir}/liblcevc_dec_api.so.%{version}
-%{_libdir}/liblcevc_dec_legacy.so.4
-%{_libdir}/liblcevc_dec_legacy.so.%{version}
-%{_libdir}/liblcevc_dec_pipeline_cpu.so.4
-%{_libdir}/liblcevc_dec_pipeline_cpu.so.%{version}
-%{_libdir}/liblcevc_dec_pipeline_legacy.so.4
-%{_libdir}/liblcevc_dec_pipeline_legacy.so.%{version}
+%{_libdir}/liblcevc_dec_legacy.so.1
+%{_libdir}/liblcevc_dec_pipeline_cpu.so.1
+%{_libdir}/liblcevc_dec_pipeline_legacy.so.1
 
 %files devel
 %{_includedir}/LCEVC
@@ -179,6 +175,9 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_sequencer_test_unit
 
 %changelog
+* Fri Aug 01 2025 Simone Caronni <negativo17@gmail.com> - 4.0.1-1
+- Update to 4.0.1.
+
 * Fri Jul 11 2025 Simone Caronni <negativo17@gmail.com> - 4.0.0-1
 - Update to 4.0.0.
 
