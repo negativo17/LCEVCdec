@@ -23,6 +23,8 @@ License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
 Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+# https://github.com/v-novaltd/LCEVCdec/pull/33#issuecomment-3400704779
+Patch0:         LCEVCdec-build-fix.patch
 
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)

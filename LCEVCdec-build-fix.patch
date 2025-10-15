@@ -1,0 +1,18 @@
+diff -Naur LCEVCdec-4.0.2.old/src/common/src/acceleration.c LCEVCdec-4.0.2/src/common/src/acceleration.c
+--- LCEVCdec-4.0.2.old/src/common/src/acceleration.c	2025-10-15 10:01:54.882937371 +0200
++++ LCEVCdec-4.0.2/src/common/src/acceleration.c	2025-10-15 10:02:44.384932226 +0200
+@@ -67,10 +67,13 @@
+ {
+     int32_t cpuInfo[4];
+     loadCPUInfo(cpuInfo, 0);
+-    if (nids < 7) {
++    if (cpuInfo[0] < 1) {
+         return false;
+     }
+     loadCPUInfo(cpuInfo, 1);
++    if (cpuInfo[0] < 7) {
++        return false;
++    }
+ 
+     // Note: clang has sse in version 8, but not xsave functions, so need >=9
+ #if VN_COMPILER(GCC) && (__GNUC__ >= 9) || VN_COMPILER(CLANG) && (__clang_major__ >= 9) || \
