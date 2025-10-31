@@ -1,10 +1,3 @@
-# This information is required if not building from a GIT checkout.
-# See cmake/modules/VNovaSetup.cmake:
-%global gitlonghash 49183ed6bc6c6cbd53e7de10b83ec2dc9af9226c
-%global gitdate 20250630
-%global githash %(c=%{gitlonghash}; echo ${c:0:7})
-%global gitbranch main
-
 # Tests require network, as described in src/func_tests/README.md, and each test type
 # (Qualcomm dev kit, Ubuntu, etc.) requires the download of a few gigabytes of videos
 # from https://lcevcdec.nbg1.your-objectstorage.com. The videos used for testing
@@ -16,15 +9,13 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.0.2
+Version:        4.0.3
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
 
 Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-# https://github.com/v-novaltd/LCEVCdec/pull/33#issuecomment-3400704779
-Patch0:         LCEVCdec-build-fix.patch
 
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
@@ -89,15 +80,6 @@ Sample programs that use %{name}.
 %prep
 %autosetup -p1
 
-# This information is required if not building from a GIT checkout.
-# See cmake/modules/VNovaSetup.cmake:
-echo -n %{gitlonghash} > .gitlonghash
-echo -n %{gitdate} | date +%Y-%m-%d > .gitdate
-echo -n %{githash} > .githash
-echo -n %{gitbranch} > .gitbranch
-echo -n %{version} > .gitversion
-echo -n %(echo %version | cut -d. -f1) > .gitshortversion
-
 %if %{with tests}
 # Adjust configuration file for tests:
 sed -i \
@@ -123,9 +105,6 @@ sed -i \
 
 %install
 %cmake_install
-
-#mv %{buildroot}%{_prefix}/lib/*.a %{buildroot}%{_libdir}/
-rm -fr %{buildroot}%{_prefix}/lib
 
 # Let RPM pick up docs in the files section
 rm -fr %{buildroot}%{_docdir} %{buildroot}%{_prefix}/licenses
@@ -178,6 +157,10 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_sequencer_test_unit
 
 %changelog
+* Fri Oct 31 2025 Simone Caronni <negativo17@gmail.com> - 4.0.3-1
+- Update to 4.0.3.
+- Clean up SPEC file.
+
 * Wed Oct 15 2025 Simone Caronni <negativo17@gmail.com> - 4.0.2-1
 - Update to 4.0.2.
 
