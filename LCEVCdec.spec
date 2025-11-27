@@ -9,7 +9,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.0.3
+Version:        4.0.4
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
@@ -140,6 +140,8 @@ python3 src/func_tests/run_tests.py
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
 %{_libdir}/pkgconfig/lcevc_dec.pc
+%{_libdir}/pkgconfig/lcevc_dec_extract.pc
+%{_libdir}/pkgconfig/lcevc_dec_utility.pc
 
 %files samples
 %{_bindir}/lcevc_dec_common_test_unit
@@ -157,6 +159,9 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_sequencer_test_unit
 
 %changelog
+* Thu Nov 27 2025 Simone Caronni <negativo17@gmail.com> - 4.0.4-1
+- Update to 4.0.4.
+
 * Fri Oct 31 2025 Simone Caronni <negativo17@gmail.com> - 4.0.3-1
 - Update to 4.0.3.
 - Clean up SPEC file.
