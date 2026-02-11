@@ -9,7 +9,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.0.4
+Version:        4.0.5
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
@@ -159,6 +159,9 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_sequencer_test_unit
 
 %changelog
+* Wed Feb 11 2026 Simone Caronni <negativo17@gmail.com> - 4.0.5-1
+- Update to 4.0.5.
+
 * Thu Nov 27 2025 Simone Caronni <negativo17@gmail.com> - 4.0.4-1
 - Update to 4.0.4.
 
