@@ -9,7 +9,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.0.5
+Version:        4.1.0
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
@@ -119,16 +119,12 @@ python3 src/func_tests/run_tests.py
 %doc README.md
 %{_libdir}/liblcevc_dec_api.so.4
 %{_libdir}/liblcevc_dec_api.so.%{version}
-%{_libdir}/liblcevc_dec_legacy.so.1
 %{_libdir}/liblcevc_dec_pipeline_cpu.so.1
-%{_libdir}/liblcevc_dec_pipeline_legacy.so.1
 
 %files devel
 %{_includedir}/LCEVC
 %{_libdir}/liblcevc_dec_api.so
-%{_libdir}/liblcevc_dec_legacy.so
 %{_libdir}/liblcevc_dec_pipeline_cpu.so
-%{_libdir}/liblcevc_dec_pipeline_legacy.so
 # Static:
 %{_libdir}/liblcevc_dec_api_utility.a
 %{_libdir}/liblcevc_dec_common.a
@@ -136,7 +132,6 @@ python3 src/func_tests/run_tests.py
 %{_libdir}/liblcevc_dec_extract.a
 %{_libdir}/liblcevc_dec_pipeline.a
 %{_libdir}/liblcevc_dec_pixel_processing.a
-%{_libdir}/liblcevc_dec_sequencer.a
 %{_libdir}/liblcevc_dec_unit_test_utilities.a
 %{_libdir}/liblcevc_dec_utility.a
 %{_libdir}/pkgconfig/lcevc_dec.pc
@@ -147,18 +142,18 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_dec_common_test_unit
 %{_bindir}/lcevc_dec_enhancement_sample
 %{_bindir}/lcevc_dec_enhancement_test_unit
-%{_bindir}/lcevc_dec_legacy_test_unit
 %{_bindir}/lcevc_dec_pipeline_cpu_test_unit
-%{_bindir}/lcevc_dec_pipeline_legacy_test_unit
 %{_bindir}/lcevc_dec_pipeline_test_unit
 %{_bindir}/lcevc_dec_pixel_processing_test_unit
 %{_bindir}/lcevc_dec_sample
 %{_bindir}/lcevc_dec_test_harness
 %{_bindir}/lcevc_dec_test_unit
 %{_bindir}/lcevc_dec_utility_test_unit
-%{_bindir}/lcevc_sequencer_test_unit
 
 %changelog
+* Mon May 04 2026 Simone Caronni <negativo17@gmail.com> - 4.1.0-1
+- Update to 4.1.0.
+
 * Wed Feb 11 2026 Simone Caronni <negativo17@gmail.com> - 4.0.5-1
 - Update to 4.0.5.
 
