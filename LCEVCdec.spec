@@ -3,7 +3,7 @@
 # from https://lcevcdec.nbg1.your-objectstorage.com. The videos used for testing
 # are described in the "Content attribution" paragraph of the README.md file.
 # So disable tests by default:
-%bcond python_tests 0
+%bcond tests 0
 
 # python3-sphinxcontrib-plantuml currently missing from Fedora:
 %bcond docs 0
