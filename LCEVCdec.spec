@@ -20,15 +20,18 @@ Source0:        https://github.com/v-novaltd/%{name}/archive/%{version}.tar.gz#/
 BuildRequires:  cmake
 BuildRequires:  cmake(CLI11)
 BuildRequires:  cmake(fmt)
+BuildRequires:  cmake(glfw3)
 BuildRequires:  cmake(nlohmann_json)
 BuildRequires:  cmake(range-v3)
 BuildRequires:  gcc-c++
 BuildRequires:  git
+BuildRequires:  glslang
 BuildRequires:  gmock-devel
 BuildRequires:  pkgconfig(libavcodec)
 BuildRequires:  pkgconfig(libavdevice)
 BuildRequires:  pkgconfig(libxxhash)
 BuildRequires:  pkgconfig(gtest)
+BuildRequires:  pkgconfig(vulkan)
 
 %if %{with docs}
 BuildRequires:  doxygen
@@ -96,10 +99,11 @@ sed -i \
   -DVN_SDK_API_LAYER=ON \
   -DVN_SDK_JSON_CONFIG=ON \
 %if %{with docs}
-  -DVN_SDK_DOCS=ON
+  -DVN_SDK_DOCS=ON \
 %else
-  -DVN_SDK_DOCS=OFF
+  -DVN_SDK_DOCS=OFF \
 %endif
+  -DVN_SDK_PIPELINE_VULKAN=ON
 
 %cmake_build
 
@@ -120,11 +124,13 @@ python3 src/func_tests/run_tests.py
 %{_libdir}/liblcevc_dec_api.so.4
 %{_libdir}/liblcevc_dec_api.so.%{version}
 %{_libdir}/liblcevc_dec_pipeline_cpu.so.1
+%{_libdir}/liblcevc_dec_pipeline_vulkan.so.1
 
 %files devel
 %{_includedir}/LCEVC
 %{_libdir}/liblcevc_dec_api.so
 %{_libdir}/liblcevc_dec_pipeline_cpu.so
+%{_libdir}/liblcevc_dec_pipeline_vulkan.so
 # Static:
 %{_libdir}/liblcevc_dec_api_utility.a
 %{_libdir}/liblcevc_dec_extract.a
@@ -140,6 +146,7 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_dec_enhancement_test_unit
 %{_bindir}/lcevc_dec_pipeline_cpu_test_unit
 %{_bindir}/lcevc_dec_pipeline_test_unit
+%{_bindir}/lcevc_dec_pipeline_vulkan_test_unit
 %{_bindir}/lcevc_dec_pixel_processing_test_unit
 %{_bindir}/lcevc_dec_sample
 %{_bindir}/lcevc_dec_test_harness
@@ -149,6 +156,7 @@ python3 src/func_tests/run_tests.py
 %changelog
 * Sun Aug 16 2026 Simone Caronni <negativo17@gmail.com> - 4.2.1-1
 - Update to 4.2.1.
+- Enable the Vulkan pipeline.
 
 * Wed Jun 17 2026 Simone Caronni <negativo17@gmail.com> - 4.2.0-1
 - Update to 4.2.0.
