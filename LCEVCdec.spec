@@ -9,7 +9,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.2.1
+Version:        4.2.2
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
@@ -144,6 +144,7 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_dec_common_test_unit
 %{_bindir}/lcevc_dec_enhancement_sample
 %{_bindir}/lcevc_dec_enhancement_test_unit
+%{_bindir}/lcevc_dec_extract_test_unit
 %{_bindir}/lcevc_dec_pipeline_cpu_test_unit
 %{_bindir}/lcevc_dec_pipeline_test_unit
 %{_bindir}/lcevc_dec_pipeline_vulkan_test_unit
@@ -154,6 +155,9 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_dec_utility_test_unit
 
 %changelog
+* Fri Sep 11 2026 Simone Caronni <negativo17@gmail.com> - 4.2.2-1
+- Update to 4.2.2.
+
 * Sun Aug 16 2026 Simone Caronni <negativo17@gmail.com> - 4.2.1-1
 - Update to 4.2.1.
 - Enable the Vulkan pipeline.
