@@ -9,8 +9,8 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.2.2
-Release:        3%{?dist}
+Version:        4.3.0
+Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
 URL:            https://docs.v-nova.com/v-nova/lcevc/lcevc-sdk-overview
@@ -155,6 +155,9 @@ python3 src/func_tests/run_tests.py
 %{_bindir}/lcevc_dec_utility_test_unit
 
 %changelog
+* Fri Oct 16 2026 Simone Caronni <negativo17@gmail.com> - 4.3.0-1
+- Update to 4.3.0.
+
 * Wed Oct 07 2026 Simone Caronni <negativo17@gmail.com> - 4.2.2-3
 - Rebuild for updated dependencies.
 
